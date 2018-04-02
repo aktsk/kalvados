@@ -1,4 +1,4 @@
-# Kalvados
+# Kalvados [![Build Status](https://travis-ci.org/aktsk/kalvados.svg?branch=master)](https://travis-ci.org/aktsk/kalvados)
 
 Kalvados is an Apple receipt generator for testing.
 
