@@ -110,6 +110,60 @@ func main() {
 }
 ```
 
+### Deploy kalvados server to Google App Engine
+
+You can run kalvados server on Google App Engine.
+
+```
+cd appengine/app
+make deploy
+```
+
+Before deploy, you should put your private key file as `key.pem` and certificate file as `cert.pem` under appengine/app directory. Or you can set your private key and certificate in app.yaml like this.
+
+In app.yaml:
+
+```yaml
+env_variables:
+  # It seems GAE/Go could not handle environment variables
+  # that has return code.So use ">-" to replace return code
+  # with white space
+  CERTIFICATE: >-
+    -----BEGIN CERTIFICATE-----
+    MIIB2zCCAUSgAwIBAgIEOZu39TANBgkqhkiG9w0BAQsFADApMRAwDgYDVQQKEwdB
+    Y21lIENvMRUwEwYDVQQDEwxFZGRhcmQgU3RhcmswIBcNMTgwMzE5MTY1MzA1WhgP
+    MjM4MzAzMTkxNjUzMDVaMCUxEDAOBgNVBAoTB0FjbWUgQ28xETAPBgNVBAMTCEpv
+    biBTbm93MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDJxF2I+OtGLk/7yY6+
+    IcXv9XI9cBg30QOPjdZt6hP9MEZJkIk4LIKnxFbm4GBQ0Zf3MCovoL7lp7h6DSAN
+    mj7QRy6XZqAkW3D+qF6bGRNiw/3PwUw0HpuvGkbGY4d8VmMG0Jia9iF/B4f1fRIy
+    39k3ILBXDZ66TE9dryFxkgLIxwIDAQABoxIwEDAOBgNVHQ8BAf8EBAMCBaAwDQYJ
+    KoZIhvcNAQELBQADgYEASHF7Wl2kRj294uM6WahMjklLj0kHRX9ZQ2xbezKf4P/Z
+    o7d2zZ6xiB44wfoK/uEGfjL59Qe17mkOVamXMFMAWmVgtZzOzGkUzn45H7vmfQX+
+    HA/9anzcllC0cswK7g60a7cULdcVxgsaI2q3mGL4UitneeO+BtSSSg5fLcPHZW8=
+    -----END CERTIFICATE-----
+
+includes:
+  - secret.yaml
+```
+
+In secret.yaml **(Do not commit and push this file to SCM)**:
+
+```yaml
+env_variables:
+  # It seems GAE/Go could not handle environment variables
+  # that has return code.So use ">-" to replace return code
+  # with white space
+  PRIVATE_KEY: >-
+    -----BEGIN PRIVATE KEY-----
+    MIICXAIBAAKB.....
+    .....
+    .....
+    .....
+    .....
+    .....
+    -----END PRIVATE KEY-----
+```
+
 ----
 
 ## Contributing

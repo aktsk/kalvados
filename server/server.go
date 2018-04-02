@@ -19,11 +19,12 @@ type Response struct {
 
 // Serve is for serving rceipt generator
 func Serve(port int, key *rsa.PrivateKey, cert *x509.Certificate) {
-	http.HandleFunc("/", encode(key, cert))
+	http.HandleFunc("/", Encode(key, cert))
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), nil))
 }
 
-func encode(key *rsa.PrivateKey, cert *x509.Certificate) func(http.ResponseWriter, *http.Request) {
+// Encode encodes JSON receipt data
+func Encode(key *rsa.PrivateKey, cert *x509.Certificate) func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		body, err := ioutil.ReadAll(r.Body)
 		if err != nil {
