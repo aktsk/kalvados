@@ -1,6 +1,0 @@
-package: github.com/aktsk/kalvados
-import:
-- package: github.com/aktsk/nolmandy
-  subpackages:
-  - receipt
-- package: github.com/fullsailor/pkcs7
