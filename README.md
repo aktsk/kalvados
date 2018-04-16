@@ -47,28 +47,32 @@ JSON format that kalvados can parse is like this.
 
 ## Usage
 
-### Compile kalvados
-
-Run make command.
-
-```
-make
-```
-
 ### As a receipt generator command line tool
+
+Install `kalvados` command.
+
+```
+go get github.com/aktsk/kalvados/cmd/kalvados
+```
 
 Run kalvados command.
 
 ```
-cat receipt.json | bin/kalvados -keyFile key.pem -certFile cert.pem
+cat receipt.json | kalvados -keyFile key.pem -certFile cert.pem
 ```
 
 ### As a receipt generator server
 
+Install `kalvados-server` command.
+
+```
+go get github.com/aktsk/kalvados/cmd/kalvados-server
+```
+
 Run kalvados-server command.
 
 ```
-bin/kalvados-server -keyFile key.pem -certFile cert.pem
+kalvados-server -keyFile key.pem -certFile cert.pem
 ```
 
 
