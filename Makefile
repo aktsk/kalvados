@@ -19,8 +19,8 @@ fmt: setup
 	goimports -w .
 
 build:
-	vgo build -o bin/$(NAME) cmd/kalvados/kalvados.go
-	vgo build -o bin/$(NAME)-server cmd/kalvados/kalvados_server.go
+	vgo build -o bin/$(NAME) cmd/kalvados/main.go
+	vgo build -o bin/$(NAME)-server cmd/kalvados-server/main.go
 
 clean:
 	rm bin/$(NAME)
