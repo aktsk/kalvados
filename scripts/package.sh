@@ -7,7 +7,7 @@ cd ${DIR}
 test -d pkg && rm -rf ./pkg
 make crossbuild
 
-VERSION=$(gobump show -r)
+VERSION=$(gobump show -r ./version)
 
 # Generate shasum
 pushd ./pkg/dist/v${VERSION}
