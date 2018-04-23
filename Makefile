@@ -43,3 +43,6 @@ crossbuild: setup
 
 release: package
 	ghr -u aktsk v${VERSION} ./pkg/dist/v${VERSION}
+
+bump:
+	@sh -c "'$(CURDIR)/scripts/bump.sh'"
