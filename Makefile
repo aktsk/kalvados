@@ -1,5 +1,6 @@
 NAME := kalvados
-VERSION = $(shell gobump show -r)
+VERSION = $(shell gobump show -r ./version)
+REVISION := $(shell git rev-parse --short HEAD)
 
 all: build
 
@@ -33,10 +34,10 @@ package: setup
 	@sh -c "'$(CURDIR)/scripts/package.sh'"
 
 crossbuild: setup
-	goxz -pv=v${VERSION} -build-ldflags="-X main.GitCommit=${COMMIT}" \
+	goxz -pv=v${VERSION} -build-ldflags="-X main.GitCommit=${REVISION}" \
         -arch=386,amd64 -d=./pkg/dist/v${VERSION} \
         -n ${NAME} ./cmd/${NAME}
-	goxz -pv=v${VERSION} -build-ldflags="-X main.GitCommit=${COMMIT}" \
+	goxz -pv=v${VERSION} -build-ldflags="-X main.GitCommit=${REVISION}" \
         -arch=386,amd64 -d=./pkg/dist/v${VERSION} \
         -n ${NAME}-server ./cmd/${NAME}-server
 

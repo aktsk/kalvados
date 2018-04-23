@@ -11,16 +11,30 @@ import (
 	"os"
 
 	"github.com/aktsk/kalvados/receipt"
+	"github.com/aktsk/kalvados/version"
 )
 
+const name = "kalvados"
+
+var GitCommit string
+
 func main() {
-	var keyFileName string
-	var certFileName string
+	var (
+		keyFileName  string
+		certFileName string
+		versionFlag  bool
+	)
 
 	flag.StringVar(&keyFileName, "keyFile", "key.pem", "Private Key file")
 	flag.StringVar(&certFileName, "certFile", "cert.pem", "Cetificate file")
+	flag.BoolVar(&versionFlag, "version", false, "print version string")
 
 	flag.Parse()
+
+	if versionFlag {
+		fmt.Printf("%s version: %s (rev: %s)", name, version.Get(), GitCommit)
+		os.Exit(0)
+	}
 
 	keyFile, err := os.Open(keyFileName)
 	if err != nil {
