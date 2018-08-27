@@ -24,8 +24,8 @@ fmt: setup
 	goimports -w .
 
 build:
-	vgo build -o bin/$(NAME) cmd/$(NAME)/main.go
-	vgo build -o bin/$(NAME)-server cmd/$(NAME)-server/main.go
+	cd cmd/kalvados; vgo build -o bin/$(NAME)
+	cd cmd/kalvados-server; vgo build -o bin/$(NAME)-server
 
 clean:
 	rm bin/$(NAME)
